@@ -1,0 +1,193 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserListItem renderiza correctamente con props mínimas 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#fff",
+      "borderColor": "#e0e0e0",
+      "borderRadius": 8,
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "marginVertical": 6,
+      "padding": 12,
+    }
+  }
+  testID="user-list-item"
+>
+  <View
+    style={
+      {
+        "flex": 1,
+        "marginRight": 12,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#222",
+          "fontSize": 16,
+          "fontWeight": "600",
+          "marginBottom": 2,
+        }
+      }
+    >
+      Ana García
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#555",
+          "fontSize": 13,
+          "marginTop": 1,
+        }
+      }
+    >
+      Doc: 
+      12345678
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#555",
+          "fontSize": 13,
+          "marginTop": 1,
+        }
+      }
+    >
+      Tel: 
+      3001234567
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#555",
+          "fontSize": 13,
+          "marginTop": 1,
+        }
+      }
+    >
+      ana@example.com
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "gap": 8,
+      }
+    }
+  >
+    <View
+      accessibilityLabel="Actualizar usuario"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#4A90E2",
+          "borderRadius": 6,
+          "opacity": 1,
+          "paddingHorizontal": 12,
+          "paddingVertical": 6,
+        }
+      }
+      testID="user-update-button"
+    >
+      <Text
+        style={
+          {
+            "color": "#fff",
+            "fontSize": 13,
+            "fontWeight": "600",
+          }
+        }
+      >
+        Actualizar
+      </Text>
+    </View>
+    <View
+      accessibilityLabel="Eliminar usuario"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#E25454",
+          "borderRadius": 6,
+          "opacity": 1,
+          "paddingHorizontal": 12,
+          "paddingVertical": 6,
+        }
+      }
+      testID="user-delete-button"
+    >
+      <Text
+        style={
+          {
+            "color": "#fff",
+            "fontSize": 13,
+            "fontWeight": "600",
+          }
+        }
+      >
+        Eliminar
+      </Text>
+    </View>
+  </View>
+</View>
+`;
