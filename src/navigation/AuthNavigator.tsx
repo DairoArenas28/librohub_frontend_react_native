@@ -1,0 +1,27 @@
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import { AuthStackParamList } from '../types';
+import LoginScreen from '../screens/auth/LoginScreen';
+import RegisterScreen from '../screens/auth/RegisterScreen';
+import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen';
+import ValidateCodeScreen from '../screens/auth/ValidateCodeScreen';
+import NewPasswordScreen from '../screens/auth/NewPasswordScreen';
+import { useAppConfig } from '../context/AppConfigContext';
+
+const Stack = createStackNavigator<AuthStackParamList>();
+
+export default function AuthNavigator(): React.JSX.Element {
+  const { config } = useAppConfig();
+
+  return (
+    <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Login" component={LoginScreen} />
+      {config.allowPublicRegistration && (
+        <Stack.Screen name="Register" component={RegisterScreen} />
+      )}
+      <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+      <Stack.Screen name="ValidateCode" component={ValidateCodeScreen} />
+      <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
+    </Stack.Navigator>
+  );
+}
