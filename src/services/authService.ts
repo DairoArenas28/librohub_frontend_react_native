@@ -1,8 +1,9 @@
 import * as SecureStore from 'expo-secure-store';
 import { AuthResponse, LoginCredentials, RegisterData } from '../types/auth';
 import { handleResponse, parseError } from './errorHandler';
+import { API_URL } from '../config';
 
-const BASE_URL = 'http://192.168.1.14:3000/api/v1';
+const BASE_URL = API_URL;
 const TOKEN_KEY = 'auth_token';
 
 export const authService = {

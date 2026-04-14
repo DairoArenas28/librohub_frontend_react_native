@@ -8,8 +8,9 @@ import {
   Comment,
 } from '../types/book';
 import { handleResponse, parseError } from './errorHandler';
+import { API_URL } from '../config';
 
-const BASE_URL = 'http://192.168.1.14:3000/api/v1';
+const BASE_URL = API_URL;
 const TOKEN_KEY = 'auth_token';
 
 /**
@@ -20,7 +21,8 @@ export function resolveCoverUrl(coverUrl: string | null | undefined): string | n
   if (!coverUrl) return null;
   if (coverUrl.startsWith('http')) return coverUrl;
   // Ruta relativa como /api/v1/books/:id/cover
-  return `http://192.168.1.14:3000${coverUrl}`;
+  const base = API_URL.replace('/api/v1', '');
+  return `${base}${coverUrl}`;
 }
 
 async function authHeaders(): Promise<HeadersInit> {
