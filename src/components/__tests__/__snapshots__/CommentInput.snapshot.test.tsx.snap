@@ -1,0 +1,188 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommentInput renderiza correctamente en estado de carga 1`] = `
+<View
+  testID="comment-input"
+>
+  <View
+    style={
+      {
+        "alignItems": "flex-end",
+        "flexDirection": "row",
+      }
+    }
+  >
+    <TextInput
+      editable={false}
+      multiline={true}
+      onChangeText={[Function]}
+      placeholder="Escribe un comentario..."
+      placeholderTextColor="#999"
+      style={
+        {
+          "borderColor": "#ccc",
+          "borderRadius": 8,
+          "borderWidth": 1,
+          "color": "#333",
+          "flex": 1,
+          "fontSize": 14,
+          "marginRight": 8,
+          "maxHeight": 100,
+          "minHeight": 44,
+          "paddingHorizontal": 12,
+          "paddingVertical": 8,
+        }
+      }
+      testID="comment-input-field"
+      value=""
+    />
+    <View
+      accessibilityLabel="Enviar comentario"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": true,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={false}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#A0C4F1",
+          "borderRadius": 8,
+          "justifyContent": "center",
+          "minHeight": 44,
+          "minWidth": 72,
+          "opacity": 1,
+          "paddingHorizontal": 16,
+          "paddingVertical": 10,
+        }
+      }
+      testID="comment-submit-button"
+    >
+      <ActivityIndicator
+        color="#fff"
+        size="small"
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`CommentInput renderiza correctamente en estado inicial 1`] = `
+<View
+  testID="comment-input"
+>
+  <View
+    style={
+      {
+        "alignItems": "flex-end",
+        "flexDirection": "row",
+      }
+    }
+  >
+    <TextInput
+      editable={true}
+      multiline={true}
+      onChangeText={[Function]}
+      placeholder="Escribe un comentario..."
+      placeholderTextColor="#999"
+      style={
+        {
+          "borderColor": "#ccc",
+          "borderRadius": 8,
+          "borderWidth": 1,
+          "color": "#333",
+          "flex": 1,
+          "fontSize": 14,
+          "marginRight": 8,
+          "maxHeight": 100,
+          "minHeight": 44,
+          "paddingHorizontal": 12,
+          "paddingVertical": 8,
+        }
+      }
+      testID="comment-input-field"
+      value=""
+    />
+    <View
+      accessibilityLabel="Enviar comentario"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": false,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#4A90E2",
+          "borderRadius": 8,
+          "justifyContent": "center",
+          "minHeight": 44,
+          "minWidth": 72,
+          "opacity": 1,
+          "paddingHorizontal": 16,
+          "paddingVertical": 10,
+        }
+      }
+      testID="comment-submit-button"
+    >
+      <Text
+        style={
+          {
+            "color": "#fff",
+            "fontSize": 14,
+            "fontWeight": "600",
+          }
+        }
+      >
+        Enviar
+      </Text>
+    </View>
+  </View>
+</View>
+`;

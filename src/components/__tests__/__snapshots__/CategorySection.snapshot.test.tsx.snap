@@ -1,0 +1,299 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CategorySection renderiza correctamente con lista vacía de libros 1`] = `
+<View
+  style={
+    {
+      "marginBottom": 24,
+    }
+  }
+  testID="category-section"
+>
+  <Text
+    style={
+      {
+        "color": "#111",
+        "fontSize": 18,
+        "fontWeight": "700",
+        "marginBottom": 12,
+        "marginHorizontal": 16,
+      }
+    }
+    testID="category-name"
+  >
+    Fantasía
+  </Text>
+  <RCTScrollView
+    contentContainerStyle={
+      {
+        "paddingHorizontal": 16,
+      }
+    }
+    data={[]}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={true}
+    keyExtractor={[Function]}
+    onContentSizeChange={[Function]}
+    onLayout={[Function]}
+    onMomentumScrollBegin={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={0.0001}
+    showsHorizontalScrollIndicator={false}
+    stickyHeaderIndices={[]}
+    testID="books-list"
+    viewabilityConfigCallbackPairs={[]}
+  >
+    <View />
+  </RCTScrollView>
+</View>
+`;
+
+exports[`CategorySection renderiza correctamente con props mínimas 1`] = `
+<View
+  style={
+    {
+      "marginBottom": 24,
+    }
+  }
+  testID="category-section"
+>
+  <Text
+    style={
+      {
+        "color": "#111",
+        "fontSize": 18,
+        "fontWeight": "700",
+        "marginBottom": 12,
+        "marginHorizontal": 16,
+      }
+    }
+    testID="category-name"
+  >
+    Ciencia Ficción
+  </Text>
+  <RCTScrollView
+    contentContainerStyle={
+      {
+        "paddingHorizontal": 16,
+      }
+    }
+    data={
+      [
+        {
+          "author": "Frank Herbert",
+          "category": "Ciencia Ficción",
+          "coverUrl": "https://example.com/dune.jpg",
+          "id": "book-1",
+          "status": "active",
+          "title": "Dune",
+          "year": 1965,
+        },
+        {
+          "author": "Isaac Asimov",
+          "category": "Ciencia Ficción",
+          "coverUrl": "https://example.com/foundation.jpg",
+          "id": "book-2",
+          "status": "active",
+          "title": "Fundación",
+          "year": 1951,
+        },
+      ]
+    }
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={true}
+    keyExtractor={[Function]}
+    onContentSizeChange={[Function]}
+    onLayout={[Function]}
+    onMomentumScrollBegin={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={0.0001}
+    showsHorizontalScrollIndicator={false}
+    stickyHeaderIndices={[]}
+    testID="books-list"
+    viewabilityConfigCallbackPairs={[]}
+  >
+    <View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={
+          [
+            {
+              "flexDirection": "row",
+            },
+            null,
+          ]
+        }
+      >
+        <View
+          accessibilityLabel="Dune"
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "center",
+              "marginRight": 12,
+              "opacity": 1,
+              "width": 100,
+            }
+          }
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              {
+                "uri": "https://example.com/dune.jpg",
+              }
+            }
+            style={
+              {
+                "backgroundColor": "#e0e0e0",
+                "borderRadius": 6,
+                "height": 150,
+                "width": 100,
+              }
+            }
+            testID="book-cover"
+          />
+          <Text
+            numberOfLines={2}
+            style={
+              {
+                "color": "#333",
+                "fontSize": 12,
+                "marginTop": 6,
+                "textAlign": "center",
+              }
+            }
+            testID="book-title"
+          >
+            Dune
+          </Text>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={
+          [
+            {
+              "flexDirection": "row",
+            },
+            null,
+          ]
+        }
+      >
+        <View
+          accessibilityLabel="Fundación"
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "center",
+              "marginRight": 12,
+              "opacity": 1,
+              "width": 100,
+            }
+          }
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              {
+                "uri": "https://example.com/foundation.jpg",
+              }
+            }
+            style={
+              {
+                "backgroundColor": "#e0e0e0",
+                "borderRadius": 6,
+                "height": 150,
+                "width": 100,
+              }
+            }
+            testID="book-cover"
+          />
+          <Text
+            numberOfLines={2}
+            style={
+              {
+                "color": "#333",
+                "fontSize": 12,
+                "marginTop": 6,
+                "textAlign": "center",
+              }
+            }
+            testID="book-title"
+          >
+            Fundación
+          </Text>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

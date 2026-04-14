@@ -1,0 +1,221 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SummaryCard renderiza correctamente con conteos 1`] = `
+<View
+  accessibilityLabel="Usuarios"
+  accessibilityRole="button"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "backgroundColor": "#fff",
+      "borderRadius": 10,
+      "elevation": 3,
+      "marginVertical": 8,
+      "opacity": 1,
+      "padding": 16,
+      "shadowColor": "#000",
+      "shadowOffset": {
+        "height": 2,
+        "width": 0,
+      },
+      "shadowOpacity": 0.08,
+      "shadowRadius": 4,
+    }
+  }
+  testID="summary-card"
+>
+  <Text
+    style={
+      {
+        "color": "#333",
+        "fontSize": 16,
+        "fontWeight": "600",
+        "marginBottom": 12,
+      }
+    }
+    testID="summary-card-title"
+  >
+    Usuarios
+  </Text>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-around",
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "flex": 1,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#4A90E2",
+            "fontSize": 24,
+            "fontWeight": "700",
+          }
+        }
+        testID="summary-card-active"
+      >
+        10
+      </Text>
+      <Text
+        style={
+          {
+            "color": "#888",
+            "fontSize": 12,
+            "marginTop": 2,
+          }
+        }
+      >
+        Activos
+      </Text>
+    </View>
+    <View
+      style={
+        {
+          "backgroundColor": "#e0e0e0",
+          "height": 40,
+          "width": 1,
+        }
+      }
+    />
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "flex": 1,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#4A90E2",
+            "fontSize": 24,
+            "fontWeight": "700",
+          }
+        }
+        testID="summary-card-inactive"
+      >
+        3
+      </Text>
+      <Text
+        style={
+          {
+            "color": "#888",
+            "fontSize": 12,
+            "marginTop": 2,
+          }
+        }
+      >
+        Inactivos
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`SummaryCard renderiza correctamente en estado de carga 1`] = `
+<View
+  accessibilityLabel="Libros"
+  accessibilityRole="button"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "backgroundColor": "#fff",
+      "borderRadius": 10,
+      "elevation": 3,
+      "marginVertical": 8,
+      "opacity": 1,
+      "padding": 16,
+      "shadowColor": "#000",
+      "shadowOffset": {
+        "height": 2,
+        "width": 0,
+      },
+      "shadowOpacity": 0.08,
+      "shadowRadius": 4,
+    }
+  }
+  testID="summary-card"
+>
+  <Text
+    style={
+      {
+        "color": "#333",
+        "fontSize": 16,
+        "fontWeight": "600",
+        "marginBottom": 12,
+      }
+    }
+    testID="summary-card-title"
+  >
+    Libros
+  </Text>
+  <ActivityIndicator
+    color="#4A90E2"
+    size="small"
+    testID="summary-card-loading"
+  />
+</View>
+`;

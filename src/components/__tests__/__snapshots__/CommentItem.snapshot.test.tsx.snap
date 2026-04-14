@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommentItem renderiza correctamente con avatar 1`] = `
+<View
+  style={
+    {
+      "flexDirection": "row",
+      "paddingHorizontal": 4,
+      "paddingVertical": 10,
+    }
+  }
+  testID="comment-item"
+>
+  <Image
+    source={
+      {
+        "uri": "https://example.com/avatar.jpg",
+      }
+    }
+    style={
+      {
+        "backgroundColor": "#e0e0e0",
+        "borderRadius": 20,
+        "height": 40,
+        "marginRight": 10,
+        "width": 40,
+      }
+    }
+    testID="comment-avatar"
+  />
+  <View
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#333",
+          "fontSize": 14,
+          "fontWeight": "600",
+          "marginBottom": 2,
+        }
+      }
+      testID="comment-author"
+    >
+      Ana García
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#555",
+          "fontSize": 13,
+          "lineHeight": 18,
+        }
+      }
+      testID="comment-text"
+    >
+      Excelente libro, muy recomendado.
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`CommentItem renderiza correctamente sin avatar (usa placeholder) 1`] = `
+<View
+  style={
+    {
+      "flexDirection": "row",
+      "paddingHorizontal": 4,
+      "paddingVertical": 10,
+    }
+  }
+  testID="comment-item"
+>
+  <Image
+    source={
+      {
+        "uri": "https://via.placeholder.com/40x40?text=U",
+      }
+    }
+    style={
+      {
+        "backgroundColor": "#e0e0e0",
+        "borderRadius": 20,
+        "height": 40,
+        "marginRight": 10,
+        "width": 40,
+      }
+    }
+    testID="comment-avatar"
+  />
+  <View
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#333",
+          "fontSize": 14,
+          "fontWeight": "600",
+          "marginBottom": 2,
+        }
+      }
+      testID="comment-author"
+    >
+      Ana García
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#555",
+          "fontSize": 13,
+          "lineHeight": 18,
+        }
+      }
+      testID="comment-text"
+    >
+      Excelente libro, muy recomendado.
+    </Text>
+  </View>
+</View>
+`;
