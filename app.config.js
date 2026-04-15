@@ -2,12 +2,12 @@ module.exports = ({ config }) => ({
   ...config,
   android: {
     ...config.android,
-    package: 'com.dairoarenas28.librohubapp',
+    package: 'com.librohub.app',
   },
   extra: {
-    apiUrl: process.env.API_URL,
+    apiUrl: process.env.API_URL ?? 'https://librohub-backend-express-1.onrender.com/api/v1',
     eas: {
-      projectId: process.env.EAS_PROJECT_ID,
+      projectId: 'a7471866-d866-4a25-baa4-1aead6d89952',
     },
   },
 });
