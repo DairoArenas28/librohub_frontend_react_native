@@ -44,13 +44,16 @@ export function useProfile(): UseProfileReturn {
     setIsLoading(true);
     setProfileError(null);
     userService.getMe()
-      .then((user) => {
+      .then(async (user) => {
+        const avatarUrl = user.hasAvatar
+          ? await userService.getAvatarBase64(user.id)
+          : null;
         setProfileData({
           name: user.name,
           document: user.document,
           email: user.email,
           phone: user.phone,
-          avatarUrl: user.hasAvatar ? userService.getAvatarUrl(user.id) : null,
+          avatarUrl,
         });
         setIsLoading(false);
       })
@@ -81,10 +84,10 @@ export function useProfile(): UseProfileReturn {
     setIsUploadingAvatar(true);
     try {
       const updated = await userService.uploadAvatar(fileUri);
-      setProfileData((prev) => ({
-        ...prev,
-        avatarUrl: updated.hasAvatar ? userService.getAvatarUrl(updated.id) : prev.avatarUrl,
-      }));
+      if (updated.hasAvatar) {
+        const base64 = await userService.getAvatarBase64(updated.id);
+        setProfileData((prev) => ({ ...prev, avatarUrl: base64 }));
+      }
     } finally {
       setIsUploadingAvatar(false);
     }

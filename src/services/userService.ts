@@ -104,6 +104,20 @@ export const userService = {
     }
   },
 
+  async getAvatarBase64(userId: string): Promise<string | null> {
+    try {
+      const token = await SecureStore.getItemAsync(TOKEN_KEY);
+      const response = await fetch(`${BASE_URL}/users/${userId}/avatar/base64`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (response.status === 404) return null;
+      const data = await response.json();
+      return data.base64 ?? null;
+    } catch {
+      return null;
+    }
+  },
+
   getAvatarUrl(userId: string): string {
     return `${BASE_URL}/users/${userId}/avatar`;
   },
