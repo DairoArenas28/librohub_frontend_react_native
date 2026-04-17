@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   StatusBar,
+  Dimensions,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
@@ -140,11 +141,12 @@ export default function HomeScreen(): React.JSX.Element {
         </View>
       )}
 
-      {/* Filtered results — flat list — Req 6.2, 6.3 */}
+      {/* Filtered results — grid 3 columnas — Req 6.2, 6.3 */}
       {!showLoading && !showError && hasActiveFilters && !noResults && (
         <FlatList
           data={filteredBooks}
           keyExtractor={(item) => item.id}
+          numColumns={3}
           renderItem={({ item }) => (
             <View style={styles.filteredBookItem}>
               <BookCard book={item} onPress={handleBookPress} />
@@ -247,7 +249,8 @@ const styles = StyleSheet.create({
     paddingBottom: 24,
   },
   filteredBookItem: {
-    paddingHorizontal: 16,
-    marginBottom: 12,
+    width: (Dimensions.get('window').width - 48) / 3,
+    padding: 6,
+    alignItems: 'center',
   },
 });
