@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Text } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { AdminTabParamList, AdminStackParamList } from '../types';
 import AdminHomeScreen from '../screens/admin/AdminHomeScreen';
 import UsersScreen from '../screens/admin/UsersScreen';
@@ -14,12 +14,14 @@ import BookFormScreen from '../screens/admin/BookFormScreen';
 const Tab = createBottomTabNavigator<AdminTabParamList>();
 const Stack = createStackNavigator<AdminStackParamList>();
 
-const TAB_ICONS: Record<string, { active: string; inactive: string }> = {
-  AdminHome: { active: '🏠', inactive: '🏠' },
-  Users:     { active: '👥', inactive: '👤' },
-  Books:     { active: '📚', inactive: '📖' },
-  Settings:  { active: '⚙️', inactive: '⚙️' },
-  AdminProfile: { active: '👤', inactive: '🧑' },
+type IoniconsName = React.ComponentProps<typeof Ionicons>['name'];
+
+const TAB_ICONS: Record<string, { active: IoniconsName; inactive: IoniconsName }> = {
+  AdminHome:    { active: 'home',           inactive: 'home-outline' },
+  Users:        { active: 'people',         inactive: 'people-outline' },
+  Books:        { active: 'library',        inactive: 'library-outline' },
+  Settings:     { active: 'settings',       inactive: 'settings-outline' },
+  AdminProfile: { active: 'person-circle',  inactive: 'person-circle-outline' },
 };
 
 function AdminTabs(): React.JSX.Element {
@@ -29,13 +31,9 @@ function AdminTabs(): React.JSX.Element {
         headerShown: false,
         tabBarActiveTintColor: '#4A90E2',
         tabBarInactiveTintColor: '#888',
-        tabBarIcon: ({ focused, color }) => {
-          const icons = TAB_ICONS[route.name] ?? { active: '●', inactive: '○' };
-          return (
-            <Text style={{ fontSize: 22, color }}>
-              {focused ? icons.active : icons.inactive}
-            </Text>
-          );
+        tabBarIcon: ({ focused, color, size }) => {
+          const icons = TAB_ICONS[route.name] ?? { active: 'ellipse', inactive: 'ellipse-outline' };
+          return <Ionicons name={focused ? icons.active : icons.inactive} size={size} color={color} />;
         },
       })}
     >
