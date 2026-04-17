@@ -28,6 +28,12 @@
     },
     "plugins": [
       "expo-secure-store"
-    ]
+    ],
+    "extra": {
+      "apiUrl": "http://localhost:3000/api/v1",
+      "eas": {
+        "projectId": "a7471866-d866-4a25-baa4-1aead6d89952"
+      }
+    }
   }
 }

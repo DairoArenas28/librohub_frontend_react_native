@@ -1,0 +1,649 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterPanel renderiza con categoría y año preseleccionados 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#fff",
+      "borderRadius": 8,
+      "elevation": 3,
+      "marginHorizontal": 16,
+      "marginVertical": 8,
+      "padding": 16,
+      "shadowColor": "#000",
+      "shadowOffset": {
+        "height": 2,
+        "width": 0,
+      },
+      "shadowOpacity": 0.1,
+      "shadowRadius": 4,
+    }
+  }
+  testID="filter-panel"
+>
+  <View
+    style={
+      {
+        "marginBottom": 16,
+        "zIndex": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#555",
+          "fontSize": 13,
+          "fontWeight": "600",
+          "marginBottom": 6,
+        }
+      }
+    >
+      Categoría
+    </Text>
+    <View
+      accessibilityLabel="Seleccionar categoría"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#fafafa",
+          "borderColor": "#ccc",
+          "borderRadius": 6,
+          "borderWidth": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "opacity": 1,
+          "paddingHorizontal": 12,
+          "paddingVertical": 10,
+        }
+      }
+      testID="category-dropdown"
+    >
+      <Text
+        style={
+          {
+            "color": "#333",
+            "flex": 1,
+            "fontSize": 14,
+          }
+        }
+      >
+        Romance
+      </Text>
+      <Text
+        style={
+          {
+            "color": "#666",
+            "fontSize": 12,
+            "marginLeft": 8,
+          }
+        }
+      >
+        ▼
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      {
+        "marginBottom": 16,
+        "zIndex": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#555",
+          "fontSize": 13,
+          "fontWeight": "600",
+          "marginBottom": 6,
+        }
+      }
+    >
+      Año
+    </Text>
+    <View
+      accessibilityLabel="Seleccionar año"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#fafafa",
+          "borderColor": "#ccc",
+          "borderRadius": 6,
+          "borderWidth": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "opacity": 1,
+          "paddingHorizontal": 12,
+          "paddingVertical": 10,
+        }
+      }
+      testID="year-dropdown"
+    >
+      <Text
+        style={
+          {
+            "color": "#333",
+            "flex": 1,
+            "fontSize": 14,
+          }
+        }
+      >
+        2021
+      </Text>
+      <Text
+        style={
+          {
+            "color": "#666",
+            "fontSize": 12,
+            "marginLeft": 8,
+          }
+        }
+      >
+        ▼
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      {
+        "flexDirection": "row",
+        "gap": 12,
+        "justifyContent": "flex-end",
+        "marginTop": 4,
+      }
+    }
+  >
+    <View
+      accessibilityLabel="Limpiar filtros"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "backgroundColor": "#fff",
+          "borderColor": "#ccc",
+          "borderRadius": 6,
+          "borderWidth": 1,
+          "opacity": 1,
+          "paddingHorizontal": 20,
+          "paddingVertical": 10,
+        }
+      }
+      testID="clear-button"
+    >
+      <Text
+        style={
+          {
+            "color": "#555",
+            "fontSize": 14,
+            "fontWeight": "500",
+          }
+        }
+      >
+        Limpiar
+      </Text>
+    </View>
+    <View
+      accessibilityLabel="Aplicar filtros"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "backgroundColor": "#1a73e8",
+          "borderRadius": 6,
+          "opacity": 1,
+          "paddingHorizontal": 24,
+          "paddingVertical": 10,
+        }
+      }
+      testID="apply-button"
+    >
+      <Text
+        style={
+          {
+            "color": "#fff",
+            "fontSize": 14,
+            "fontWeight": "700",
+            "letterSpacing": 0.5,
+          }
+        }
+      >
+        FILTRAR
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`FilterPanel renderiza correctamente cuando visible es true 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#fff",
+      "borderRadius": 8,
+      "elevation": 3,
+      "marginHorizontal": 16,
+      "marginVertical": 8,
+      "padding": 16,
+      "shadowColor": "#000",
+      "shadowOffset": {
+        "height": 2,
+        "width": 0,
+      },
+      "shadowOpacity": 0.1,
+      "shadowRadius": 4,
+    }
+  }
+  testID="filter-panel"
+>
+  <View
+    style={
+      {
+        "marginBottom": 16,
+        "zIndex": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#555",
+          "fontSize": 13,
+          "fontWeight": "600",
+          "marginBottom": 6,
+        }
+      }
+    >
+      Categoría
+    </Text>
+    <View
+      accessibilityLabel="Seleccionar categoría"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#fafafa",
+          "borderColor": "#ccc",
+          "borderRadius": 6,
+          "borderWidth": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "opacity": 1,
+          "paddingHorizontal": 12,
+          "paddingVertical": 10,
+        }
+      }
+      testID="category-dropdown"
+    >
+      <Text
+        style={
+          {
+            "color": "#333",
+            "flex": 1,
+            "fontSize": 14,
+          }
+        }
+      >
+        Todas las categorías
+      </Text>
+      <Text
+        style={
+          {
+            "color": "#666",
+            "fontSize": 12,
+            "marginLeft": 8,
+          }
+        }
+      >
+        ▼
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      {
+        "marginBottom": 16,
+        "zIndex": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#555",
+          "fontSize": 13,
+          "fontWeight": "600",
+          "marginBottom": 6,
+        }
+      }
+    >
+      Año
+    </Text>
+    <View
+      accessibilityLabel="Seleccionar año"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#fafafa",
+          "borderColor": "#ccc",
+          "borderRadius": 6,
+          "borderWidth": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "opacity": 1,
+          "paddingHorizontal": 12,
+          "paddingVertical": 10,
+        }
+      }
+      testID="year-dropdown"
+    >
+      <Text
+        style={
+          {
+            "color": "#333",
+            "flex": 1,
+            "fontSize": 14,
+          }
+        }
+      >
+        Todos los años
+      </Text>
+      <Text
+        style={
+          {
+            "color": "#666",
+            "fontSize": 12,
+            "marginLeft": 8,
+          }
+        }
+      >
+        ▼
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      {
+        "flexDirection": "row",
+        "gap": 12,
+        "justifyContent": "flex-end",
+        "marginTop": 4,
+      }
+    }
+  >
+    <View
+      accessibilityLabel="Limpiar filtros"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "backgroundColor": "#fff",
+          "borderColor": "#ccc",
+          "borderRadius": 6,
+          "borderWidth": 1,
+          "opacity": 1,
+          "paddingHorizontal": 20,
+          "paddingVertical": 10,
+        }
+      }
+      testID="clear-button"
+    >
+      <Text
+        style={
+          {
+            "color": "#555",
+            "fontSize": 14,
+            "fontWeight": "500",
+          }
+        }
+      >
+        Limpiar
+      </Text>
+    </View>
+    <View
+      accessibilityLabel="Aplicar filtros"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "backgroundColor": "#1a73e8",
+          "borderRadius": 6,
+          "opacity": 1,
+          "paddingHorizontal": 24,
+          "paddingVertical": 10,
+        }
+      }
+      testID="apply-button"
+    >
+      <Text
+        style={
+          {
+            "color": "#fff",
+            "fontSize": 14,
+            "fontWeight": "700",
+            "letterSpacing": 0.5,
+          }
+        }
+      >
+        FILTRAR
+      </Text>
+    </View>
+  </View>
+</View>
+`;
