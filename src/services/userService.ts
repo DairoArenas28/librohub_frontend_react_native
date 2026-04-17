@@ -85,4 +85,26 @@ export const userService = {
       throw parseError(err);
     }
   },
+
+  async uploadAvatar(fileUri: string): Promise<User> {
+    try {
+      const token = await SecureStore.getItemAsync(TOKEN_KEY);
+      const fileName = fileUri.split('/').pop() ?? 'avatar.jpg';
+      const mimeType = fileName.endsWith('.png') ? 'image/png' : 'image/jpeg';
+      const formData = new FormData();
+      formData.append('avatar', { uri: fileUri, name: fileName, type: mimeType } as any);
+      const response = await fetch(`${BASE_URL}/users/me/avatar`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
+      });
+      return handleResponse<User>(response);
+    } catch (err) {
+      throw parseError(err);
+    }
+  },
+
+  getAvatarUrl(userId: string): string {
+    return `${BASE_URL}/users/${userId}/avatar`;
+  },
 };

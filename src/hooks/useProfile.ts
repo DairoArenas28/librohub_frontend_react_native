@@ -22,85 +22,78 @@ export interface UseProfileReturn extends ProfileData {
   changePasswordError: ServiceError | null;
   changePasswordSuccess: boolean;
   changePassword: (currentPassword: string, newPassword: string) => Promise<void>;
+  isUploadingAvatar: boolean;
+  uploadAvatar: (fileUri: string) => Promise<void>;
 }
 
-/**
- * Hook de perfil del usuario autenticado.
- * Expone datos del usuario y método changePassword.
- * Requisitos: 8.1, 8.4, 8.6
- */
 export function useProfile(): UseProfileReturn {
   const { userId, role } = useAuthContext();
 
   const [profileData, setProfileData] = useState<Omit<ProfileData, 'userId' | 'role'>>({
-    name: null,
-    document: null,
-    email: null,
-    phone: null,
-    avatarUrl: null,
+    name: null, document: null, email: null, phone: null, avatarUrl: null,
   });
   const [isLoading, setIsLoading] = useState(false);
   const [profileError, setProfileError] = useState<ServiceError | null>(null);
-
   const [isChangingPassword, setIsChangingPassword] = useState(false);
   const [changePasswordError, setChangePasswordError] = useState<ServiceError | null>(null);
   const [changePasswordSuccess, setChangePasswordSuccess] = useState(false);
+  const [isUploadingAvatar, setIsUploadingAvatar] = useState(false);
 
-  useEffect(() => {
+  const loadProfile = useCallback(() => {
     if (!userId) return;
-    let cancelled = false;
     setIsLoading(true);
     setProfileError(null);
-
-    userService
-      .getMe()
+    userService.getMe()
       .then((user) => {
-        if (cancelled) return;
         setProfileData({
           name: user.name,
           document: user.document,
           email: user.email,
           phone: user.phone,
-          avatarUrl: null,
+          avatarUrl: user.avatarPath ? userService.getAvatarUrl(user.id) : null,
         });
         setIsLoading(false);
       })
       .catch((err: unknown) => {
-        if (cancelled) return;
         setProfileError(parseError(err));
         setIsLoading(false);
       });
-
-    return () => { cancelled = true; };
   }, [userId]);
 
-  const changePassword = useCallback(
-    async (currentPassword: string, newPassword: string): Promise<void> => {
-      setIsChangingPassword(true);
-      setChangePasswordError(null);
-      setChangePasswordSuccess(false);
-      try {
-        await authService.changePassword(currentPassword, newPassword);
-        setChangePasswordSuccess(true);
-      } catch (err) {
-        setChangePasswordError(parseError(err));
-        throw err;
-      } finally {
-        setIsChangingPassword(false);
-      }
-    },
-    [],
-  );
+  useEffect(() => { loadProfile(); }, [loadProfile]);
+
+  const changePassword = useCallback(async (currentPassword: string, newPassword: string) => {
+    setIsChangingPassword(true);
+    setChangePasswordError(null);
+    setChangePasswordSuccess(false);
+    try {
+      await authService.changePassword(currentPassword, newPassword);
+      setChangePasswordSuccess(true);
+    } catch (err) {
+      setChangePasswordError(parseError(err));
+      throw err;
+    } finally {
+      setIsChangingPassword(false);
+    }
+  }, []);
+
+  const uploadAvatar = useCallback(async (fileUri: string) => {
+    setIsUploadingAvatar(true);
+    try {
+      const updated = await userService.uploadAvatar(fileUri);
+      setProfileData((prev) => ({
+        ...prev,
+        avatarUrl: updated.avatarPath ? userService.getAvatarUrl(updated.id) : prev.avatarUrl,
+      }));
+    } finally {
+      setIsUploadingAvatar(false);
+    }
+  }, []);
 
   return {
-    userId,
-    role,
-    ...profileData,
-    isLoading,
-    profileError,
-    isChangingPassword,
-    changePasswordError,
-    changePasswordSuccess,
-    changePassword,
+    userId, role, ...profileData,
+    isLoading, profileError,
+    isChangingPassword, changePasswordError, changePasswordSuccess, changePassword,
+    isUploadingAvatar, uploadAvatar,
   };
 }
