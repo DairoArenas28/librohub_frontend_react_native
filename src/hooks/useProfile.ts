@@ -39,6 +39,8 @@ export function useProfile(): UseProfileReturn {
   const [changePasswordSuccess, setChangePasswordSuccess] = useState(false);
   const [isUploadingAvatar, setIsUploadingAvatar] = useState(false);
 
+  const [avatarRefresh, setAvatarRefresh] = useState(0);
+
   const loadProfile = useCallback(() => {
     if (!userId) return;
     setIsLoading(true);
@@ -48,6 +50,7 @@ export function useProfile(): UseProfileReturn {
         const avatarUrl = user.hasAvatar
           ? await userService.getAvatarBase64(user.id)
           : null;
+        console.log('[useProfile] hasAvatar:', user.hasAvatar, 'avatarUrl length:', avatarUrl?.length);
         setProfileData({
           name: user.name,
           document: user.document,
@@ -61,7 +64,7 @@ export function useProfile(): UseProfileReturn {
         setProfileError(parseError(err));
         setIsLoading(false);
       });
-  }, [userId]);
+  }, [userId, avatarRefresh]);
 
   useEffect(() => { loadProfile(); }, [loadProfile]);
 
@@ -83,11 +86,8 @@ export function useProfile(): UseProfileReturn {
   const uploadAvatar = useCallback(async (fileUri: string) => {
     setIsUploadingAvatar(true);
     try {
-      const updated = await userService.uploadAvatar(fileUri);
-      if (updated.hasAvatar) {
-        const base64 = await userService.getAvatarBase64(updated.id);
-        setProfileData((prev) => ({ ...prev, avatarUrl: base64 }));
-      }
+      await userService.uploadAvatar(fileUri);
+      setAvatarRefresh((n) => n + 1); // fuerza recarga del perfil
     } finally {
       setIsUploadingAvatar(false);
     }
