@@ -50,7 +50,7 @@ export function useProfile(): UseProfileReturn {
           document: user.document,
           email: user.email,
           phone: user.phone,
-          avatarUrl: user.avatarPath ? userService.getAvatarUrl(user.id) : null,
+          avatarUrl: user.hasAvatar ? userService.getAvatarUrl(user.id) : null,
         });
         setIsLoading(false);
       })
@@ -83,7 +83,7 @@ export function useProfile(): UseProfileReturn {
       const updated = await userService.uploadAvatar(fileUri);
       setProfileData((prev) => ({
         ...prev,
-        avatarUrl: updated.avatarPath ? userService.getAvatarUrl(updated.id) : prev.avatarUrl,
+        avatarUrl: updated.hasAvatar ? userService.getAvatarUrl(updated.id) : prev.avatarUrl,
       }));
     } finally {
       setIsUploadingAvatar(false);

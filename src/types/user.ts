@@ -8,7 +8,7 @@ export interface User {
   phone: string;
   role: UserRole;
   isActive: boolean;
-  avatarPath: string | null;
+  hasAvatar: boolean;
 }
 
 export interface UserFormData {
