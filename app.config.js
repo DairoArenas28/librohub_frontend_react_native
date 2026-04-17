@@ -7,7 +7,7 @@ module.exports = ({ config }) => ({
   extra: {
     apiUrl: process.env.API_URL,
     eas: {
-      projectId: process.env.EAS_PROJECT_ID,
+      projectId: 'a7471866-d866-4a25-baa4-1aead6d89952',
     },
   },
 });
