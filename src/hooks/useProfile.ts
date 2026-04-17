@@ -46,17 +46,14 @@ export function useProfile(): UseProfileReturn {
     setIsLoading(true);
     setProfileError(null);
     userService.getMe()
-      .then(async (user) => {
-        const avatarUrl = user.hasAvatar
-          ? await userService.getAvatarBase64(user.id)
-          : null;
-        console.log('[useProfile] hasAvatar:', user.hasAvatar, 'avatarUrl length:', avatarUrl?.length);
+      .then((user) => {
+        console.log('[useProfile] hasAvatar:', user.hasAvatar, 'base64 length:', user.avatarBase64?.length);
         setProfileData({
           name: user.name,
           document: user.document,
           email: user.email,
           phone: user.phone,
-          avatarUrl,
+          avatarUrl: user.avatarBase64 ?? null,
         });
         setIsLoading(false);
       })
