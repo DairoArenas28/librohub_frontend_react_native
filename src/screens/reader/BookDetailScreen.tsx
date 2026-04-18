@@ -64,15 +64,6 @@ export default function BookDetailScreen({ route, navigation }: Props): React.JS
     <View style={styles.flex} testID="book-detail-screen">
       <View style={styles.header}>
         <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          accessibilityRole="button"
-          accessibilityLabel="Volver"
-          testID="back-button"
-          style={styles.backButton}
-        >
-          <Text style={styles.backButtonText}>{'←'}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
           onPress={toggleFavorite}
           accessibilityRole="button"
           accessibilityLabel={isFavorite ? 'Quitar de favoritos' : 'Agregar a favoritos'}
@@ -184,7 +175,7 @@ function MetaRow({ label, value, testID }: MetaRowProps): React.JSX.Element {
 const styles = StyleSheet.create({
   flex: { flex: 1, backgroundColor: '#fff' },
   centered: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24, backgroundColor: '#fff' },
-  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 16, paddingTop: 48, paddingBottom: 8, backgroundColor: '#fff' },
+  header: { flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', paddingHorizontal: 16, paddingTop: 8, paddingBottom: 8, backgroundColor: '#fff' },
   backButton: { padding: 8 },
   backButtonText: { fontSize: 24, color: '#333' },
   favoriteButton: { padding: 8 },
