@@ -41,6 +41,7 @@ export interface CategoryBooks {
 export interface BookFilters {
   category?: string;
   year?: number;
+  search?: string;
 }
 
 export interface BookFormData {

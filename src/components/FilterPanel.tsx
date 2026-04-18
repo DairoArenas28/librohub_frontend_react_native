@@ -4,16 +4,10 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  Modal,
-  FlatList,
+  TextInput,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { BookFilters } from '../types/book';
-
-/**
- * Panel de filtros para el catálogo de libros.
- * Permite filtrar por Categoría y Año de publicación.
- * Requisitos: 6.1, 6.5
- */
 
 export interface FilterPanelProps {
   categories: string[];
@@ -38,6 +32,7 @@ export default function FilterPanel({
 }: FilterPanelProps): React.JSX.Element | null {
   const [localCategory, setLocalCategory] = useState<string | null>(selectedCategory);
   const [localYear, setLocalYear] = useState<number | null>(selectedYear);
+  const [localSearch, setLocalSearch] = useState('');
   const [openDropdown, setOpenDropdown] = useState<DropdownType>(null);
 
   if (!visible) return null;
@@ -46,12 +41,14 @@ export default function FilterPanel({
     const filters: BookFilters = {};
     if (localCategory !== null) filters.category = localCategory;
     if (localYear !== null) filters.year = localYear;
+    if (localSearch.trim()) filters.search = localSearch.trim();
     onApply(filters);
   };
 
   const handleClear = () => {
     setLocalCategory(null);
     setLocalYear(null);
+    setLocalSearch('');
     onClear();
   };
 
@@ -61,6 +58,26 @@ export default function FilterPanel({
 
   return (
     <View style={styles.container} testID="filter-panel">
+
+      {/* Búsqueda por nombre */}
+      <Text style={styles.label}>Buscar</Text>
+      <View style={styles.searchRow}>
+        <Ionicons name="search-outline" size={18} color="#888" style={styles.searchIcon} />
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Título o autor..."
+          placeholderTextColor="#aaa"
+          value={localSearch}
+          onChangeText={setLocalSearch}
+          autoCorrect={false}
+          testID="search-input"
+        />
+        {localSearch.length > 0 && (
+          <TouchableOpacity onPress={() => setLocalSearch('')}>
+            <Ionicons name="close-circle" size={18} color="#aaa" />
+          </TouchableOpacity>
+        )}
+      </View>
       {/* Dropdown Categoría */}
       <View style={styles.dropdownWrapper}>
         <Text style={styles.label}>Categoría</Text>
@@ -207,6 +224,25 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+  },
+  searchRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 6,
+    paddingHorizontal: 10,
+    backgroundColor: '#fafafa',
+    marginBottom: 16,
+  },
+  searchIcon: {
+    marginRight: 6,
+  },
+  searchInput: {
+    flex: 1,
+    fontSize: 14,
+    color: '#333',
+    paddingVertical: 10,
   },
   dropdownWrapper: {
     marginBottom: 16,
