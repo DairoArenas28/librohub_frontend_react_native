@@ -19,12 +19,19 @@ const TAB_ICONS: Record<string, { active: IoniconsName; inactive: IoniconsName }
   Profile: { active: 'person',         inactive: 'person-outline' },
 };
 
+const HEADER_STYLE = {
+  backgroundColor: '#000',
+};
+const HEADER_TITLE_STYLE = { fontWeight: '700' as const, fontSize: 17 };
+
 function ReaderTabs(): React.JSX.Element {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        headerShown: false,
-        tabBarActiveTintColor: '#6200ee',
+        headerStyle: HEADER_STYLE,
+        headerTintColor: '#fff',
+        headerTitleStyle: HEADER_TITLE_STYLE,
+        tabBarActiveTintColor: '#000000ff',
         tabBarInactiveTintColor: '#888',
         tabBarIcon: ({ focused, color, size }) => {
           const icons = TAB_ICONS[route.name] ?? { active: 'ellipse', inactive: 'ellipse-outline' };
@@ -32,24 +39,26 @@ function ReaderTabs(): React.JSX.Element {
         },
       })}
     >
-      <Tab.Screen name="Home"    component={HomeScreen}    options={{ title: 'Inicio' }} />
+      <Tab.Screen name="Home"    component={HomeScreen}    options={{ title: 'Inicio', headerShown: false }} />
       <Tab.Screen name="Profile" component={ProfileScreen} options={{ title: 'Perfil' }} />
     </Tab.Navigator>
   );
 }
 
-/**
- * Navigator del Lector.
- * Stack raíz con tabs anidados + rutas de detalle y cambio de contraseña.
- * Requisitos: 5.9, 8.7, 12.3
- */
 export default function ReaderNavigator(): React.JSX.Element {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="ReaderTabs" component={ReaderTabs} />
-      <Stack.Screen name="BookDetail" component={BookDetailScreen} />
-      <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} />
-      <Stack.Screen name="PDFViewer" component={PDFViewerScreen} />
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: HEADER_STYLE,
+        headerTintColor: '#fff',
+        headerTitleStyle: HEADER_TITLE_STYLE,
+        headerBackTitle: '',
+      }}
+    >
+      <Stack.Screen name="ReaderTabs"     component={ReaderTabs}          options={{ headerShown: false }} />
+      <Stack.Screen name="BookDetail"     component={BookDetailScreen}     options={{ title: 'Detalle del libro' }} />
+      <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} options={{ title: 'Cambiar contraseña' }} />
+      <Stack.Screen name="PDFViewer"      component={PDFViewerScreen}      options={{ title: 'Lector PDF' }} />
     </Stack.Navigator>
   );
 }
