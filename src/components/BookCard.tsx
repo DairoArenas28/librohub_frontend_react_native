@@ -36,19 +36,18 @@ export default function BookCard({ book, onPress }: BookCardProps): React.JSX.El
 
 const styles = StyleSheet.create({
   container: {
-    width: 100,
-    marginRight: 12,
+    width: '100%',
     alignItems: 'center',
   },
   cover: {
-    width: 100,
-    height: 150,
+    width: '100%',
+    aspectRatio: 2 / 3,
     borderRadius: 6,
     backgroundColor: '#e0e0e0',
   },
   title: {
     marginTop: 6,
-    fontSize: 12,
+    fontSize: 11,
     textAlign: 'center',
     color: '#333',
   },

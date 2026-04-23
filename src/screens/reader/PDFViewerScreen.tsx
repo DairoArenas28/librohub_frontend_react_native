@@ -92,7 +92,7 @@ export default function PDFViewerScreen({ route, navigation }: Props) {
   const html = `<!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #404040; }
@@ -114,13 +114,18 @@ export default function PDFViewerScreen({ route, navigation }: Props) {
 
     pdfjsLib.getDocument({ data: bytes }).promise.then(function(pdf) {
       const viewer = document.getElementById('viewer');
+      const dpr = window.devicePixelRatio || 1;
       const width = window.innerWidth - 16;
       for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
         pdf.getPage(pageNum).then(function(page) {
-          const viewport = page.getViewport({ scale: width / page.getViewport({ scale: 1 }).width });
+          const baseViewport = page.getViewport({ scale: 1 });
+          const scale = (width / baseViewport.width) * dpr;
+          const viewport = page.getViewport({ scale });
           const canvas = document.createElement('canvas');
           canvas.width = viewport.width;
           canvas.height = viewport.height;
+          canvas.style.width = (viewport.width / dpr) + 'px';
+          canvas.style.height = (viewport.height / dpr) + 'px';
           viewer.appendChild(canvas);
           page.render({ canvasContext: canvas.getContext('2d'), viewport });
         });
@@ -148,6 +153,7 @@ export default function PDFViewerScreen({ route, navigation }: Props) {
         source={{ html }}
         javaScriptEnabled
         mixedContentMode="always"
+        scalesPageToFit={false}
         onError={() => setError(true)}
       />
     </View>

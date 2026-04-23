@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "librohub-app",
+    "name": "LibroHub",
     "slug": "librohub-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -21,7 +21,8 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.dairoarenas28.librohubapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -31,6 +32,12 @@
     ],
     "extra": {
       "eas": {}
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/a7471866-d866-4a25-baa4-1aead6d89952"
     }
   }
 }

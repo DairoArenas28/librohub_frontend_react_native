@@ -7,15 +7,19 @@ import {
   TouchableOpacity,
   StyleSheet,
   StatusBar,
+  Dimensions,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import { ReaderStackParamList } from '../../types';
 import { useBooks } from '../../hooks/useBooks';
 import { useBookFilter } from '../../hooks/useBookFilter';
+import { useNewBooks } from '../../hooks/useNewBooks';
 import CategorySection from '../../components/CategorySection';
 import FilterPanel from '../../components/FilterPanel';
+import NewBooksPanel from '../../components/NewBooksPanel';
 import BookCard from '../../components/BookCard';
 import { Book } from '../../types/book';
 
@@ -40,9 +44,22 @@ export default function HomeScreen(): React.JSX.Element {
   } = useBookFilter();
 
   const [filterVisible, setFilterVisible] = useState(false);
+  const [notifVisible, setNotifVisible] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const [hasActiveFilters, setHasActiveFilters] = useState(false);
+
+  const { newBooks, hasNew, markAsSeen } = useNewBooks(data ?? null);
+
+  const handleNotifPress = () => {
+    setFilterVisible(false);
+    setNotifVisible((v) => !v);
+  };
+
+  const handleNotifClose = async () => {
+    await markAsSeen();
+    setNotifVisible(false);
+  };
 
   // Extract unique categories and years from the full catalog — Req 6.1
   const { categories, years } = useMemo(() => {
@@ -57,7 +74,7 @@ export default function HomeScreen(): React.JSX.Element {
     navigation.navigate('BookDetail', { bookId });
   };
 
-  const handleApplyFilters = (filters: { category?: string; year?: number }) => {
+  const handleApplyFilters = (filters: { category?: string; year?: number; search?: string }) => {
     setSelectedCategory(filters.category ?? null);
     setSelectedYear(filters.year ?? null);
     setHasActiveFilters(true);
@@ -87,25 +104,22 @@ export default function HomeScreen(): React.JSX.Element {
           {isSilentRefreshing && (
             <ActivityIndicator size="small" color="rgba(255,255,255,0.7)" style={styles.syncIndicator} />
           )}
-          <TouchableOpacity style={styles.iconButton} accessibilityLabel="Buscar">
-            <Text style={styles.iconText}>🔍</Text>
+          <TouchableOpacity style={styles.iconButton} accessibilityLabel="Notificaciones" onPress={handleNotifPress}>
+            <Ionicons name={hasNew ? 'notifications' : 'notifications-outline'} size={22} color="#fff" />
+            {hasNew && <View style={styles.badge}><Text style={styles.badgeText}>{newBooks.length}</Text></View>}
           </TouchableOpacity>
-          <TouchableOpacity style={styles.iconButton} accessibilityLabel="Notificaciones">
-            <Text style={styles.iconText}>🔔</Text>
-          </TouchableOpacity>
-          {/* Funnel icon — Req 5.5, 6.1 */}
           <TouchableOpacity
             style={[styles.iconButton, hasActiveFilters && styles.iconButtonActive]}
             accessibilityLabel="Filtros"
             testID="filter-button"
             onPress={() => setFilterVisible((v) => !v)}
           >
-            <Text style={styles.iconText}>⚗️</Text>
+            <Ionicons name={hasActiveFilters ? 'funnel' : 'funnel-outline'} size={22} color="#fff" />
           </TouchableOpacity>
         </View>
       </View>
 
-      {/* Filter panel — Req 6.1, 6.2, 6.3, 6.4, 6.5 */}
+      {/* Filter panel */}
       <FilterPanel
         visible={filterVisible}
         categories={categories}
@@ -115,6 +129,15 @@ export default function HomeScreen(): React.JSX.Element {
         onApply={handleApplyFilters}
         onClear={handleClearFilters}
       />
+
+      {/* Notificaciones — nuevos libros */}
+      {notifVisible && (
+        <NewBooksPanel
+          books={newBooks}
+          onClose={handleNotifClose}
+          onBookPress={handleBookPress}
+        />
+      )}
 
       {/* Loading state — Req 5.8 */}
       {showLoading && (
@@ -140,11 +163,12 @@ export default function HomeScreen(): React.JSX.Element {
         </View>
       )}
 
-      {/* Filtered results — flat list — Req 6.2, 6.3 */}
+      {/* Filtered results — grid 3 columnas — Req 6.2, 6.3 */}
       {!showLoading && !showError && hasActiveFilters && !noResults && (
         <FlatList
           data={filteredBooks}
           keyExtractor={(item) => item.id}
+          numColumns={3}
           renderItem={({ item }) => (
             <View style={styles.filteredBookItem}>
               <BookCard book={item} onPress={handleBookPress} />
@@ -210,9 +234,22 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.2)',
     borderRadius: 8,
   },
-  iconText: {
-    fontSize: 20,
+  badge: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    backgroundColor: '#e53935',
+    borderRadius: 8,
+    minWidth: 16,
+    height: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 3,
+  },
+  badgeText: {
     color: '#fff',
+    fontSize: 9,
+    fontWeight: '700',
   },
   centered: {
     flex: 1,
@@ -247,7 +284,8 @@ const styles = StyleSheet.create({
     paddingBottom: 24,
   },
   filteredBookItem: {
-    paddingHorizontal: 16,
-    marginBottom: 12,
+    width: (Dimensions.get('window').width - 48) / 3,
+    padding: 6,
+    alignItems: 'center',
   },
 });

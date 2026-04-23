@@ -37,7 +37,15 @@ export function useBookFilter(): UseBookFilterReturn {
   const applyFilters = useCallback(async (filters: BookFilters) => {
     setState((prev) => ({ ...prev, isLoading: true, error: null }));
     try {
-      const books = await bookService.getBooks(filters);
+      // Fetch by category/year from backend, then filter by name locally
+      const { search, ...backendFilters } = filters;
+      let books = await bookService.getBooks(backendFilters);
+      if (search && search.trim().length > 0) {
+        const q = search.trim().toLowerCase();
+        books = books.filter(
+          (b) => b.title.toLowerCase().includes(q) || b.author.toLowerCase().includes(q),
+        );
+      }
       setState({
         filteredBooks: books,
         isLoading: false,
