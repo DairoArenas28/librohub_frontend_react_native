@@ -62,7 +62,7 @@ export default function BookDetailScreen({ route, navigation }: Props): React.JS
 
   return (
     <View style={styles.flex} testID="book-detail-screen">
-      <View style={styles.header}>
+      {/*<View style={styles.header}>
         <TouchableOpacity
           onPress={toggleFavorite}
           accessibilityRole="button"
@@ -74,7 +74,7 @@ export default function BookDetailScreen({ route, navigation }: Props): React.JS
             {isFavorite ? '♥' : '♡'}
           </Text>
         </TouchableOpacity>
-      </View>
+      </View>*/}
 
       <ScrollView
         style={styles.flex}
@@ -91,12 +91,12 @@ export default function BookDetailScreen({ route, navigation }: Props): React.JS
         <Text style={styles.title} testID="book-title">{book.title}</Text>
         <Text style={styles.author} testID="book-author">{book.author}</Text>
 
-        <View style={styles.ratingRow}>
+        {/*<View style={styles.ratingRow}>
           <StarRating value={book.rating} readonly />
           <Text style={styles.ratingValue} testID="book-rating">
             {book.rating.toFixed(1)}
           </Text>
-        </View>
+        </View>*/}
 
         {book.hasPdf ? (
           <TouchableOpacity
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
   favoriteIcon: { fontSize: 28, color: '#ccc' },
   favoriteIconActive: { color: '#E53935' },
   scrollContent: { paddingHorizontal: 16, paddingBottom: 32 },
-  cover: { width: '100%', height: 280, borderRadius: 12, backgroundColor: '#e0e0e0', marginBottom: 16 },
+  cover: { width: '100%', height: 280, borderRadius: 12, backgroundColor: '#e0e0e0', marginBottom: 16, marginTop: 16 },
   title: { fontSize: 22, fontWeight: '700', color: '#1a1a1a', marginBottom: 4 },
   author: { fontSize: 16, color: '#666', marginBottom: 12 },
   ratingRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 16 },
