@@ -1,7 +1,9 @@
 ﻿import React from 'react';
+import { View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Text } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { AdminTabParamList, AdminStackParamList } from '../types';
 import AdminHomeScreen from '../screens/admin/AdminHomeScreen';
 import UsersScreen from '../screens/admin/UsersScreen';
@@ -14,13 +16,18 @@ import BookFormScreen from '../screens/admin/BookFormScreen';
 const Tab = createBottomTabNavigator<AdminTabParamList>();
 const Stack = createStackNavigator<AdminStackParamList>();
 
-const TAB_ICONS: Record<string, { active: string; inactive: string }> = {
-  AdminHome: { active: '­ƒÅá', inactive: '­ƒÅá' },
-  Users:     { active: '­ƒæÑ', inactive: '­ƒæñ' },
-  Books:     { active: '­ƒôÜ', inactive: '­ƒôû' },
-  Settings:  { active: 'ÔÜÖ´©Å', inactive: 'ÔÜÖ´©Å' },
-  AdminProfile: { active: '­ƒæñ', inactive: '­ƒºæ' },
+type IoniconsName = React.ComponentProps<typeof Ionicons>['name'];
+
+const TAB_ICONS: Record<string, { active: IoniconsName; inactive: IoniconsName }> = {
+  AdminHome:    { active: 'home',           inactive: 'home-outline' },
+  Users:        { active: 'people',         inactive: 'people-outline' },
+  Books:        { active: 'library',        inactive: 'library-outline' },
+  Settings:     { active: 'settings',       inactive: 'settings-outline' },
+  AdminProfile: { active: 'person-circle',  inactive: 'person-circle-outline' },
 };
+
+const HEADER_STYLE = { backgroundColor: '#000' };
+const HEADER_TITLE_STYLE = { fontWeight: '700' as const, fontSize: 17, color: '#fff' as const };
 
 function AdminTabs(): React.JSX.Element {
   return (
@@ -29,13 +36,9 @@ function AdminTabs(): React.JSX.Element {
         headerShown: false,
         tabBarActiveTintColor: '#4A90E2',
         tabBarInactiveTintColor: '#888',
-        tabBarIcon: ({ focused, color }) => {
-          const icons = TAB_ICONS[route.name] ?? { active: 'ÔùÅ', inactive: 'Ôùï' };
-          return (
-            <Text style={{ fontSize: 22, color }}>
-              {focused ? icons.active : icons.inactive}
-            </Text>
-          );
+        tabBarIcon: ({ focused, color, size }) => {
+          const icons = TAB_ICONS[route.name] ?? { active: 'ellipse', inactive: 'ellipse-outline' };
+          return <Ionicons name={focused ? icons.active : icons.inactive} size={size} color={color} />;
         },
       })}
     >
@@ -48,17 +51,21 @@ function AdminTabs(): React.JSX.Element {
   );
 }
 
-/**
- * Navigator del Administrador.
- * Stack ra├¡z con tabs anidados + rutas de formularios.
- * Requisitos: 9.6, 12.4
- */
 export default function AdminNavigator(): React.JSX.Element {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="AdminTabs" component={AdminTabs} />
-      <Stack.Screen name="UserForm" component={UserFormScreen} />
-      <Stack.Screen name="BookForm" component={BookFormScreen} />
-    </Stack.Navigator>
+    <View style={{ flex: 1, backgroundColor: '#000' }}>
+      <StatusBar style="light" />
+      <Stack.Navigator screenOptions={{
+        headerShown: false,
+        headerStyle: HEADER_STYLE,
+        headerTintColor: '#fff',
+        headerTitleStyle: HEADER_TITLE_STYLE,
+        headerBackTitle: '',
+      }}>
+        <Stack.Screen name="AdminTabs" component={AdminTabs} />
+        <Stack.Screen name="UserForm"  component={UserFormScreen} options={{ headerShown: true, title: 'Usuario' }} />
+        <Stack.Screen name="BookForm"  component={BookFormScreen} options={{ headerShown: true, title: 'Libro' }} />
+      </Stack.Navigator>
+    </View>
   );
 }
