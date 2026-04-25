@@ -59,7 +59,6 @@ export default function LoginScreen(): React.JSX.Element {
       <TextInput
         style={styles.input}
         placeholder="Documento"
-        placeholderTextColor="#999"
         autoCapitalize="none"
         autoCorrect={false}
         value={username}
@@ -71,7 +70,6 @@ export default function LoginScreen(): React.JSX.Element {
       <TextInput
         style={styles.input}
         placeholder="Contraseña"
-        placeholderTextColor="#999"
         secureTextEntry
         value={password}
         onChangeText={setPassword}

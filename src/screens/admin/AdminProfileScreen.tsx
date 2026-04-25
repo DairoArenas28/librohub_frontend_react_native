@@ -1,43 +1,33 @@
 import React from 'react';
 import {
-  View, Text, StyleSheet, TouchableOpacity,
-  ActivityIndicator, ScrollView, Image, Alert,
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ActivityIndicator,
+  ScrollView,
 } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
 import { useProfile } from '../../hooks/useProfile';
 import { useAuthContext } from '../../context/AuthContext';
 
 export default function AdminProfileScreen(): React.JSX.Element {
-  const { name, document, phone, email, avatarUrl, isLoading, profileError, uploadAvatar, isUploadingAvatar } = useProfile();
+  const { name, document, phone, email, isLoading, profileError } = useProfile();
   const { logout } = useAuthContext();
 
-  const handlePickAvatar = async () => {
-    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    if (status !== 'granted') {
-      Alert.alert('Permiso requerido', 'Se necesita acceso a la galería para cambiar la foto.');
-      return;
-    }
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [1, 1],
-      quality: 0.8,
-    });
-    if (!result.canceled && result.assets[0]) {
-      try {
-        await uploadAvatar(result.assets[0].uri);
-      } catch {
-        Alert.alert('Error', 'No se pudo actualizar la foto de perfil.');
-      }
-    }
-  };
-
   if (isLoading) {
-    return <View style={styles.centered}><ActivityIndicator size="large" color="#4A90E2" /></View>;
+    return (
+      <View style={styles.centered}>
+        <ActivityIndicator size="large" color="#4A90E2" />
+      </View>
+    );
   }
 
   if (profileError) {
-    return <View style={styles.centered}><Text style={styles.errorText}>{profileError.message}</Text></View>;
+    return (
+      <View style={styles.centered}>
+        <Text style={styles.errorText}>{profileError.message}</Text>
+      </View>
+    );
   }
 
   const initials = name
@@ -46,21 +36,9 @@ export default function AdminProfileScreen(): React.JSX.Element {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <TouchableOpacity style={styles.avatarContainer} onPress={handlePickAvatar} disabled={isUploadingAvatar}>
-        {avatarUrl ? (
-          <Image source={{ uri: avatarUrl }} style={styles.avatarImage} />
-        ) : (
-          <View style={styles.avatarPlaceholder}>
-            <Text style={styles.avatarInitials}>{initials}</Text>
-          </View>
-        )}
-        <View style={styles.avatarBadge}>
-          {isUploadingAvatar
-            ? <ActivityIndicator size="small" color="#fff" />
-            : <Text style={styles.avatarBadgeText}>✏️</Text>
-          }
-        </View>
-      </TouchableOpacity>
+      <View style={styles.avatarPlaceholder}>
+        <Text style={styles.avatarInitials}>{initials}</Text>
+      </View>
 
       <Text style={styles.name}>{name ?? '—'}</Text>
       <Text style={styles.roleBadge}>Administrador</Text>
@@ -71,7 +49,12 @@ export default function AdminProfileScreen(): React.JSX.Element {
         <InfoRow label="Correo"    value={email} />
       </View>
 
-      <TouchableOpacity style={styles.logoutButton} onPress={logout}>
+      <TouchableOpacity
+        style={styles.logoutButton}
+        onPress={logout}
+        accessibilityRole="button"
+        accessibilityLabel="Cerrar sesión"
+      >
         <Text style={styles.logoutButtonText}>Cerrar sesión</Text>
       </TouchableOpacity>
     </ScrollView>
@@ -90,12 +73,8 @@ function InfoRow({ label, value }: { label: string; value: string | null }) {
 const styles = StyleSheet.create({
   centered:          { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 },
   container:         { alignItems: 'center', padding: 24, paddingBottom: 40 },
-  avatarContainer:   { marginTop: 24, marginBottom: 12, position: 'relative' },
-  avatarImage:       { width: 96, height: 96, borderRadius: 48 },
-  avatarPlaceholder: { width: 96, height: 96, borderRadius: 48, backgroundColor: '#2d6a4f', justifyContent: 'center', alignItems: 'center' },
+  avatarPlaceholder: { width: 96, height: 96, borderRadius: 48, backgroundColor: '#2d6a4f', justifyContent: 'center', alignItems: 'center', marginTop: 24, marginBottom: 12 },
   avatarInitials:    { color: '#fff', fontSize: 32, fontWeight: '700' },
-  avatarBadge:       { position: 'absolute', bottom: 0, right: 0, backgroundColor: '#333', borderRadius: 12, width: 24, height: 24, justifyContent: 'center', alignItems: 'center' },
-  avatarBadgeText:   { fontSize: 12 },
   name:              { fontSize: 22, fontWeight: '700', color: '#1a1a1a', marginBottom: 4 },
   roleBadge:         { fontSize: 13, color: '#fff', backgroundColor: '#2d6a4f', paddingHorizontal: 12, paddingVertical: 3, borderRadius: 12, marginBottom: 24, overflow: 'hidden' },
   infoCard:          { width: '100%', backgroundColor: '#f5f5f5', borderRadius: 12, padding: 16, marginBottom: 32, gap: 12 },

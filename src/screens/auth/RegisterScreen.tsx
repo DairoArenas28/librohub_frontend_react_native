@@ -194,7 +194,6 @@ function Field({
       <TextInput
         style={[styles.input, !!error && styles.inputError]}
         placeholder={label}
-        placeholderTextColor="#999"
         value={value}
         onChangeText={onChangeText}
         editable={editable}

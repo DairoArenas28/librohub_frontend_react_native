@@ -14,22 +14,14 @@ export default function AuthNavigator(): React.JSX.Element {
   const { config } = useAppConfig();
 
   return (
-    <Stack.Navigator
-      initialRouteName="Login"
-      screenOptions={{
-        headerStyle: { backgroundColor: '#000' },
-        headerTintColor: '#fff',
-        headerTitleStyle: { fontWeight: '700' },
-        headerBackTitle: '',
-      }}
-    >
-      <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+    <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Login" component={LoginScreen} />
       {config.allowPublicRegistration && (
-        <Stack.Screen name="Register" component={RegisterScreen} options={{ title: 'Registrarse' }} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
       )}
-      <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} options={{ title: 'Recuperar contraseña' }} />
-      <Stack.Screen name="ValidateCode" component={ValidateCodeScreen} options={{ title: 'Validar código' }} />
-      <Stack.Screen name="NewPassword" component={NewPasswordScreen} options={{ title: 'Nueva contraseña' }} />
+      <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+      <Stack.Screen name="ValidateCode" component={ValidateCodeScreen} />
+      <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
     </Stack.Navigator>
   );
 }
