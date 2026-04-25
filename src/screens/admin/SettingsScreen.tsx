@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Alert,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAppConfig, AppConfig } from '../../context/AppConfigContext';
 
 const APP_VERSION = '1.0.0';
@@ -80,7 +81,8 @@ export default function SettingsScreen(): React.JSX.Element {
   };
 
   return (
-    <ScrollView style={styles.scroll} contentContainerStyle={styles.container}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
+      <ScrollView style={styles.scroll} contentContainerStyle={styles.container}>
       <Text style={styles.pageTitle}>Configuración</Text>
 
       {/* ── SESIÓN ─────────────────────────────────── */}
@@ -195,6 +197,7 @@ export default function SettingsScreen(): React.JSX.Element {
         {saving && <Text style={styles.savingText}>Guardando...</Text>}
       </View>
     </ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -271,7 +274,8 @@ function ToggleRow({
 // ── Estilos ──────────────────────────────────────────────────────────────────
 
 const styles = StyleSheet.create({
-  scroll: { flex: 1, backgroundColor: '#f5f5f5' },
+  safeArea: { flex: 1, backgroundColor: '#f5f5f5' },
+  scroll: { flex: 1 },
   container: { padding: 16, paddingBottom: 40 },
   pageTitle: { fontSize: 26, fontWeight: '800', color: '#1a1a1a', marginBottom: 20, marginTop: 8 },
 
