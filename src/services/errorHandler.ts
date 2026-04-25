@@ -16,7 +16,13 @@ export const ErrorCodes = {
   USER_DUPLICATE_DOCUMENT: 'USER_DUPLICATE_DOCUMENT',
   // Book
   BOOK_SERVICE_UNAVAILABLE: 'BOOK_SERVICE_UNAVAILABLE',
+  BOOK_DUPLICATE_ISBN: 'BOOK_DUPLICATE_ISBN',
+  BOOK_NOT_FOUND: 'BOOK_NOT_FOUND',
   // Generic
+  NOT_FOUND: 'NOT_FOUND',
+  UNAUTHORIZED: 'UNAUTHORIZED',
+  FORBIDDEN: 'FORBIDDEN',
+  VALIDATION_ERROR: 'VALIDATION_ERROR',
   NETWORK_ERROR: 'NETWORK_ERROR',
   SERVER_ERROR: 'SERVER_ERROR',
 } as const;
@@ -29,6 +35,12 @@ const errorMessages: Record<string, string> = {
   [ErrorCodes.USER_DUPLICATE_EMAIL]: 'El correo ya está registrado',
   [ErrorCodes.USER_DUPLICATE_DOCUMENT]: 'El documento ya está registrado',
   [ErrorCodes.BOOK_SERVICE_UNAVAILABLE]: 'El servicio de libros no está disponible',
+  [ErrorCodes.BOOK_DUPLICATE_ISBN]: 'El ISBN ya está registrado',
+  [ErrorCodes.BOOK_NOT_FOUND]: 'Libro no encontrado',
+  [ErrorCodes.NOT_FOUND]: 'Recurso no encontrado',
+  [ErrorCodes.UNAUTHORIZED]: 'No autorizado',
+  [ErrorCodes.FORBIDDEN]: 'No tienes permisos para realizar esta acción',
+  [ErrorCodes.VALIDATION_ERROR]: 'Datos inválidos',
   [ErrorCodes.NETWORK_ERROR]: 'Sin conexión a internet',
   [ErrorCodes.SERVER_ERROR]: 'Error interno del servidor',
 };
@@ -48,10 +60,8 @@ export function parseError(err: unknown): ServiceError {
 
   if (err instanceof ApiError) {
     const code = mapStatusToCode(err.statusCode, err.errorCode);
-    // For server errors (5xx), prefer the actual server message over the generic one
-    const message = err.statusCode >= 500
-      ? err.message
-      : (errorMessages[code] ?? err.message);
+    // Use the server message when available, fall back to hardcoded translation
+    const message = errorMessages[code] ?? err.message;
     return {
       code,
       message,
@@ -77,12 +87,17 @@ function isServiceError(err: unknown): err is ServiceError {
 }
 
 function mapStatusToCode(statusCode: number, errorCode?: string): string {
-  if (errorCode && errorCode in errorMessages) {
+  // If the server sent a specific code, use it directly
+  if (errorCode) {
     return errorCode;
   }
   if (statusCode === 0 || statusCode === undefined) {
     return ErrorCodes.NETWORK_ERROR;
   }
+  if (statusCode === 401) return ErrorCodes.UNAUTHORIZED;
+  if (statusCode === 403) return ErrorCodes.FORBIDDEN;
+  if (statusCode === 404) return ErrorCodes.NOT_FOUND;
+  if (statusCode === 422) return ErrorCodes.VALIDATION_ERROR;
   if (statusCode >= 500) {
     return ErrorCodes.SERVER_ERROR;
   }

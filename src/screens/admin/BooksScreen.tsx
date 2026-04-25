@@ -9,6 +9,7 @@ import {
   Alert,
   StyleSheet,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import { AdminStackParamList } from '../../types';
@@ -87,7 +88,7 @@ export default function BooksScreen(): React.JSX.Element {
   );
 
   return (
-    <View style={styles.container} testID="books-screen">
+    <SafeAreaView style={styles.safeArea} edges={['top']} testID="books-screen">
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.title}>Libros</Text>
@@ -147,12 +148,13 @@ export default function BooksScreen(): React.JSX.Element {
           <ActivityIndicator size="large" color="#fff" />
         </View>
       )}
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f5f5f5' },
+  safeArea: { flex: 1, backgroundColor: '#f5f5f5' },
+  container: { flex: 1 },
   header: {
     flexDirection: 'row',
     alignItems: 'center',

@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { AdminTabParamList } from '../../types';
@@ -25,11 +26,12 @@ export default function AdminHomeScreen(): React.JSX.Element {
   );
 
   return (
-    <ScrollView
-      style={styles.scroll}
-      contentContainerStyle={styles.container}
-      testID="admin-home-screen"
-    >
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
+      <ScrollView
+        style={styles.scroll}
+        contentContainerStyle={styles.container}
+        testID="admin-home-screen"
+      >
       <Text style={styles.title} testID="admin-home-title">
         Administrador
       </Text>
@@ -64,11 +66,13 @@ export default function AdminHomeScreen(): React.JSX.Element {
         </>
       )}
     </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  scroll: { flex: 1, backgroundColor: '#f5f5f5' },
+  safeArea: { flex: 1, backgroundColor: '#f5f5f5' },
+  scroll: { flex: 1 },
   container: { padding: 16 },
   title: { fontSize: 24, fontWeight: '700', color: '#333', marginBottom: 16 },
   errorContainer: { alignItems: 'center', marginTop: 32 },

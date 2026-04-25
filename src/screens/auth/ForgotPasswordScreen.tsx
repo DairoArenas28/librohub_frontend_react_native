@@ -7,22 +7,22 @@ import {
   ActivityIndicator,
   StyleSheet,
   KeyboardAvoidingView,
-  Platform,
+  Image,
+  ScrollView,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { AuthStackParamList } from '../../types';
 import { authService } from '../../services/authService';
 import { ServiceError } from '../../services/errorHandler';
 
+const banner = require('../../../assets/banner.jpg');
+
 type ForgotNavProp = NativeStackNavigationProp<AuthStackParamList, 'ForgotPassword'>;
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-/**
- * Pantalla "Recuperar contraseña".
- * Requisitos: 4.1, 4.2, 4.3, 4.4
- */
 export default function ForgotPasswordScreen(): React.JSX.Element {
   const navigation = useNavigation<ForgotNavProp>();
   const [email, setEmail] = useState('');
@@ -31,19 +31,12 @@ export default function ForgotPasswordScreen(): React.JSX.Element {
 
   const handleSend = async () => {
     const trimmed = email.trim();
-    if (!trimmed) {
-      setError('El correo es obligatorio.');
-      return;
-    }
-    if (!EMAIL_REGEX.test(trimmed)) {
-      setError('El formato del correo no es válido.');
-      return;
-    }
+    if (!trimmed) { setError('El correo es obligatorio.'); return; }
+    if (!EMAIL_REGEX.test(trimmed)) { setError('El formato del correo no es válido.'); return; }
     setError(null);
     setIsLoading(true);
     try {
       await authService.sendResetCode(trimmed);
-      // Req 4.4 — navigate to ValidateCode
       navigation.navigate('ValidateCode', { email: trimmed });
     } catch (err) {
       setError((err as ServiceError).message);
@@ -53,100 +46,77 @@ export default function ForgotPasswordScreen(): React.JSX.Element {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-    >
-      <Text style={styles.title}>Recuperar contraseña</Text>
-      <Text style={styles.description}>
-        Ingresa tu correo registrado y te enviaremos un código de verificación.
-      </Text>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
+      <KeyboardAvoidingView style={{ flex: 1, backgroundColor: '#fff' }} behavior="padding" keyboardVerticalOffset={0}>
+        <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled" bounces={false}>
 
-      {error && <Text style={styles.errorText}>{error}</Text>}
+          {/* Banner */}
+          <View style={styles.bannerContainer}>
+            <Image source={banner} style={styles.bannerImage} resizeMode="cover" />
+            <View style={styles.bannerOverlay} />
+            <Text style={styles.bannerTitle}>LibroHub</Text>
+            <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()} testID="link-back-login">
+              <Text style={styles.backButtonText}>← Volver</Text>
+            </TouchableOpacity>
+          </View>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Correo electrónico"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-        autoCapitalize="none"
-        autoCorrect={false}
-        editable={!isLoading}
-        testID="input-email"
-      />
+          {/* Formulario */}
+          <View style={styles.form}>
+            <Text style={styles.title}>Recuperar contraseña</Text>
+            <Text style={styles.description}>
+              Ingresa tu correo registrado y te enviaremos un código de verificación.
+            </Text>
 
-      <TouchableOpacity
-        style={[styles.button, isLoading && styles.buttonDisabled]}
-        onPress={handleSend}
-        disabled={isLoading}
-        testID="btn-send-code"
-      >
-        {isLoading ? (
-          <ActivityIndicator color="#fff" />
-        ) : (
-          <Text style={styles.buttonText}>Enviar código</Text>
-        )}
-      </TouchableOpacity>
+            {error && <Text style={styles.errorText}>{error}</Text>}
 
-      <TouchableOpacity onPress={() => navigation.navigate('Login')} testID="link-back-login">
-        <Text style={styles.link}>Volver al inicio de sesión</Text>
-      </TouchableOpacity>
-    </KeyboardAvoidingView>
+            <Text style={styles.label}>Correo electrónico</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="correo@ejemplo.com"
+              placeholderTextColor="#bbb"
+              value={email}
+              onChangeText={setEmail}
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoCorrect={false}
+              editable={!isLoading}
+              testID="input-email"
+            />
+
+            <TouchableOpacity
+              style={[styles.button, isLoading && styles.buttonDisabled]}
+              onPress={handleSend}
+              disabled={isLoading}
+              testID="btn-send-code"
+            >
+              {isLoading ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>Enviar código</Text>}
+            </TouchableOpacity>
+          </View>
+
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingHorizontal: 24,
-    backgroundColor: '#fff',
-  },
-  title: {
-    fontSize: 26,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 8,
-  },
-  description: {
-    fontSize: 14,
-    color: '#666',
-    textAlign: 'center',
-    marginBottom: 20,
-  },
-  errorText: {
-    color: '#d32f2f',
-    marginBottom: 12,
-    textAlign: 'center',
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 8,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    marginBottom: 12,
-    fontSize: 16,
-  },
-  button: {
-    backgroundColor: '#1565c0',
-    borderRadius: 8,
-    paddingVertical: 14,
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  buttonDisabled: {
-    backgroundColor: '#90a4ae',
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  link: {
-    color: '#1565c0',
-    textAlign: 'center',
-    fontSize: 14,
-  },
+  safeArea: { flex: 1, backgroundColor: '#000' },
+  scroll: { flexGrow: 1 },
+
+  bannerContainer: { width: '100%', height: 200, position: 'relative', overflow: 'hidden' },
+  bannerImage: { width: '100%', height: '160%', position: 'absolute', top: '-20%' },
+  bannerOverlay: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.45)' },
+  bannerTitle: { position: 'absolute', bottom: 24, left: 20, fontSize: 38, fontWeight: '700', color: '#fff' },
+  backButton: { position: 'absolute', top: 12, left: 16 },
+  backButtonText: { color: '#fff', fontSize: 15, fontWeight: '600' },
+
+  form: { flex: 1, backgroundColor: '#fff', paddingHorizontal: 28, paddingTop: 28, paddingBottom: 40 },
+  title: { fontSize: 26, fontWeight: '600', color: '#1a1a1a', textAlign: 'center', marginBottom: 8 },
+  description: { fontSize: 14, color: '#666', textAlign: 'center', marginBottom: 20, lineHeight: 20 },
+  errorText: { color: '#d32f2f', marginBottom: 12, textAlign: 'center', fontSize: 14 },
+  label: { fontSize: 13, color: '#555', marginBottom: 4, fontWeight: '500' },
+  input: { backgroundColor: '#f0f0f0', borderRadius: 10, paddingHorizontal: 14, paddingVertical: 12, fontSize: 15, color: '#1a1a1a', marginBottom: 14 },
+  button: { backgroundColor: '#1a1a1a', borderRadius: 14, paddingVertical: 16, alignItems: 'center', marginBottom: 16 },
+  buttonDisabled: { opacity: 0.5 },
+  buttonText: { color: '#fff', fontSize: 16, fontWeight: '600' },
 });
