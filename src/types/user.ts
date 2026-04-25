@@ -8,6 +8,8 @@ export interface User {
   phone: string;
   role: UserRole;
   isActive: boolean;
+  hasAvatar: boolean;
+  avatarBase64: string | null;
 }
 
 export interface UserFormData {

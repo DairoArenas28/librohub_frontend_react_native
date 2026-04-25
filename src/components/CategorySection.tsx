@@ -26,7 +26,11 @@ export default function CategorySection({
       <FlatList
         data={books}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <BookCard book={item} onPress={onBookPress} />}
+        renderItem={({ item }) => (
+          <View style={styles.cardWrapper}>
+            <BookCard book={item} onPress={onBookPress} />
+          </View>
+        )}
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.list}
@@ -49,5 +53,9 @@ const styles = StyleSheet.create({
   },
   list: {
     paddingHorizontal: 16,
+  },
+  cardWrapper: {
+    width: 100,
+    marginRight: 12,
   },
 });
