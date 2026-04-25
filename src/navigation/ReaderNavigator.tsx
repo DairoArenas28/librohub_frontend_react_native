@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Text } from 'react-native';
@@ -13,8 +13,8 @@ const Tab = createBottomTabNavigator<ReaderTabParamList>();
 const Stack = createStackNavigator<ReaderStackParamList>();
 
 const TAB_ICONS: Record<string, { active: string; inactive: string }> = {
-  Home: { active: '🏠', inactive: '🏠' },
-  Profile: { active: '👤', inactive: '🧑' },
+  Home: { active: '­ƒÅá', inactive: '­ƒÅá' },
+  Profile: { active: '­ƒæñ', inactive: '­ƒºæ' },
 };
 
 /**
@@ -29,7 +29,7 @@ function ReaderTabs(): React.JSX.Element {
         tabBarActiveTintColor: '#6200ee',
         tabBarInactiveTintColor: '#888',
         tabBarIcon: ({ focused, color }) => {
-          const icons = TAB_ICONS[route.name] ?? { active: '●', inactive: '○' };
+          const icons = TAB_ICONS[route.name] ?? { active: 'ÔùÅ', inactive: 'Ôùï' };
           return (
             <Text style={{ fontSize: 22, color }}>
               {focused ? icons.active : icons.inactive}
@@ -46,7 +46,7 @@ function ReaderTabs(): React.JSX.Element {
 
 /**
  * Navigator del Lector.
- * Stack raíz con tabs anidados + rutas de detalle y cambio de contraseña.
+ * Stack ra├¡z con tabs anidados + rutas de detalle y cambio de contrase├▒a.
  * Requisitos: 5.9, 8.7, 12.3
  */
 export default function ReaderNavigator(): React.JSX.Element {

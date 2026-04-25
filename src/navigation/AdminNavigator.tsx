@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Text } from 'react-native';
@@ -15,11 +15,11 @@ const Tab = createBottomTabNavigator<AdminTabParamList>();
 const Stack = createStackNavigator<AdminStackParamList>();
 
 const TAB_ICONS: Record<string, { active: string; inactive: string }> = {
-  AdminHome: { active: '🏠', inactive: '🏠' },
-  Users:     { active: '👥', inactive: '👤' },
-  Books:     { active: '📚', inactive: '📖' },
-  Settings:  { active: '⚙️', inactive: '⚙️' },
-  AdminProfile: { active: '👤', inactive: '🧑' },
+  AdminHome: { active: '­ƒÅá', inactive: '­ƒÅá' },
+  Users:     { active: '­ƒæÑ', inactive: '­ƒæñ' },
+  Books:     { active: '­ƒôÜ', inactive: '­ƒôû' },
+  Settings:  { active: 'ÔÜÖ´©Å', inactive: 'ÔÜÖ´©Å' },
+  AdminProfile: { active: '­ƒæñ', inactive: '­ƒºæ' },
 };
 
 function AdminTabs(): React.JSX.Element {
@@ -30,7 +30,7 @@ function AdminTabs(): React.JSX.Element {
         tabBarActiveTintColor: '#4A90E2',
         tabBarInactiveTintColor: '#888',
         tabBarIcon: ({ focused, color }) => {
-          const icons = TAB_ICONS[route.name] ?? { active: '●', inactive: '○' };
+          const icons = TAB_ICONS[route.name] ?? { active: 'ÔùÅ', inactive: 'Ôùï' };
           return (
             <Text style={{ fontSize: 22, color }}>
               {focused ? icons.active : icons.inactive}
@@ -50,7 +50,7 @@ function AdminTabs(): React.JSX.Element {
 
 /**
  * Navigator del Administrador.
- * Stack raíz con tabs anidados + rutas de formularios.
+ * Stack ra├¡z con tabs anidados + rutas de formularios.
  * Requisitos: 9.6, 12.4
  */
 export default function AdminNavigator(): React.JSX.Element {

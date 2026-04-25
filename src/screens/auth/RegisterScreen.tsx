@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -38,22 +38,22 @@ export default function RegisterScreen(): React.JSX.Element {
   const validate = (): boolean => {
     const errors: Record<string, string> = {};
 
-    // Req 3.7 — required fields
+    // Req 3.7 ÔÇö required fields
     if (!name.trim()) errors.name = 'El nombre es obligatorio.';
     if (!document.trim()) errors.document = 'El documento es obligatorio.';
     if (!email.trim()) errors.email = 'El correo es obligatorio.';
-    if (!phone.trim()) errors.phone = 'El teléfono es obligatorio.';
-    if (!password.trim()) errors.password = 'La contraseña es obligatoria.';
-    if (!confirmPassword.trim()) errors.confirmPassword = 'Confirmar contraseña es obligatorio.';
+    if (!phone.trim()) errors.phone = 'El tel├®fono es obligatorio.';
+    if (!password.trim()) errors.password = 'La contrase├▒a es obligatoria.';
+    if (!confirmPassword.trim()) errors.confirmPassword = 'Confirmar contrase├▒a es obligatorio.';
 
-    // Req 3.3 — email format
+    // Req 3.3 ÔÇö email format
     if (email.trim() && !EMAIL_REGEX.test(email.trim())) {
-      errors.email = 'El formato del correo no es válido.';
+      errors.email = 'El formato del correo no es v├ílido.';
     }
 
-    // Req 3.4 — password match
+    // Req 3.4 ÔÇö password match
     if (password && confirmPassword && password !== confirmPassword) {
-      errors.confirmPassword = 'Las contraseñas no coinciden.';
+      errors.confirmPassword = 'Las contrase├▒as no coinciden.';
     }
 
     setFieldErrors(errors);
@@ -70,7 +70,7 @@ export default function RegisterScreen(): React.JSX.Element {
         phone: phone.trim(),
         password,
       });
-      // Req 3.6 — navigate to Login on success
+      // Req 3.6 ÔÇö navigate to Login on success
       navigation.navigate('Login');
     } catch {
       // error shown via hook state
@@ -115,7 +115,7 @@ export default function RegisterScreen(): React.JSX.Element {
           testID="input-email"
         />
         <Field
-          label="Teléfono"
+          label="Tel├®fono"
           value={phone}
           onChangeText={setPhone}
           editable={!isLoading}
@@ -124,7 +124,7 @@ export default function RegisterScreen(): React.JSX.Element {
           testID="input-phone"
         />
         <Field
-          label="Contraseña"
+          label="Contrase├▒a"
           value={password}
           onChangeText={setPassword}
           editable={!isLoading}
@@ -133,7 +133,7 @@ export default function RegisterScreen(): React.JSX.Element {
           testID="input-password"
         />
         <Field
-          label="Confirmar contraseña"
+          label="Confirmar contrase├▒a"
           value={confirmPassword}
           onChangeText={setConfirmPassword}
           editable={!isLoading}
@@ -142,7 +142,7 @@ export default function RegisterScreen(): React.JSX.Element {
           testID="input-confirm-password"
         />
 
-        {/* Req 3.8 — loading indicator + disabled button */}
+        {/* Req 3.8 ÔÇö loading indicator + disabled button */}
         <TouchableOpacity
           style={[styles.button, isLoading && styles.buttonDisabled]}
           onPress={handleRegister}
@@ -157,14 +157,14 @@ export default function RegisterScreen(): React.JSX.Element {
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => navigation.navigate('Login')} testID="link-login">
-          <Text style={styles.link}>¿Ya tienes cuenta? Inicia sesión</Text>
+          <Text style={styles.link}>┬┐Ya tienes cuenta? Inicia sesi├│n</Text>
         </TouchableOpacity>
       </ScrollView>
     </KeyboardAvoidingView>
   );
 }
 
-// ── Inline helper component ──────────────────────────────────────────────────
+// ÔöÇÔöÇ Inline helper component ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
 
 interface FieldProps {
   label: string;
