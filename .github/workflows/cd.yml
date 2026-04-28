@@ -1,10 +1,16 @@
 name: CD
 
 on:
-  push:
-    branches:
-      - develop
-      - main
+  workflow_dispatch:
+    inputs:
+      profile:
+        description: 'Build profile'
+        required: true
+        default: 'preview'
+        type: choice
+        options:
+          - preview
+          - production
 
 jobs:
   build:
@@ -29,10 +35,5 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
-      - name: Build preview (develop branch)
-        if: github.ref == 'refs/heads/develop'
-        run: eas build --platform android --profile preview --non-interactive
-
-      - name: Build production (main branch)
-        if: github.ref == 'refs/heads/main'
-        run: eas build --platform android --profile production --non-interactive
+      - name: Build
+        run: eas build --platform android --profile ${{ github.event.inputs.profile }} --non-interactive
