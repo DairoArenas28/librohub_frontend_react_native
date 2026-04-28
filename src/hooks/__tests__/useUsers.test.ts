@@ -26,6 +26,8 @@ const makeUser = (overrides: Partial<User> = {}): User => ({
   phone: '555-0001',
   role: 'reader',
   isActive: true,
+  hasAvatar: false,
+  avatarBase64: null,
   ...overrides,
 });
 

@@ -47,6 +47,7 @@ const bookFormDataArb: fc.Arbitrary<BookFormData> = fc.record({
   title: titleArb,
   author: authorArb,
   coverUrl: fc.webUrl(),
+  year: fc.integer({ min: 1900, max: 2100 }),
   pages: fc.integer({ min: 1, max: 2000 }),
   language: fc.constantFrom('es', 'en', 'fr', 'pt'),
   isbn: fc.stringMatching(/^[0-9]{10,13}$/),

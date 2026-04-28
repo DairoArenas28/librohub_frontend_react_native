@@ -63,6 +63,8 @@ function makeUser(id: string, data: UserFormData): User {
     phone: data.phone,
     role: data.role,
     isActive: true,
+    hasAvatar: false,
+    avatarBase64: null,
   };
 }
 
@@ -77,6 +79,8 @@ const userListArb: fc.Arbitrary<User[]> = fc
       phone: phoneArb,
       role: fc.constantFrom('reader' as const, 'admin' as const),
       isActive: fc.boolean(),
+      hasAvatar: fc.boolean(),
+      avatarBase64: fc.option(fc.string(), { nil: null }),
     }),
     { minLength: 1, maxLength: 10 },
   )

@@ -15,6 +15,8 @@ const mockUser: User = {
   phone: '3001234567',
   role: 'reader',
   isActive: true,
+  hasAvatar: false,
+  avatarBase64: null,
 };
 
 describe('UserListItem', () => {
