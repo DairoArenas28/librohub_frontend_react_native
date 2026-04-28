@@ -68,7 +68,7 @@ function makeBook(id: string, data: BookFormData): Book {
     id,
     title: data.title,
     author: data.author,
-    coverUrl: data.coverUrl,
+    coverUrl: data.coverUrl ?? '',
     category: data.categories[0] ?? 'general',
     year: new Date().getFullYear(),
     status: data.status,
