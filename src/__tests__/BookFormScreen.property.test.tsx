@@ -47,6 +47,29 @@ jest.mock('@react-navigation/native', () => ({
   NavigationContainer: ({ children }: { children: React.ReactNode }) => children,
 }));
 
+jest.mock('../context/AppConfigContext', () => {
+  const React = require('react');
+  const DEFAULT_CONFIG = {
+    inactivityTimeoutMinutes: 15,
+    warningTimeoutSeconds: 60,
+    maxCoverSizeMB: 5,
+    maxPdfSizeMB: 50,
+    allowPublicRegistration: true,
+    catalogPollingSeconds: 30,
+    showComingSoonBooks: true,
+  };
+  return {
+    useAppConfig: () => ({
+      config: DEFAULT_CONFIG,
+      isLoading: false,
+      updateConfig: jest.fn(),
+      resetConfig: jest.fn(),
+    }),
+    AppConfigProvider: ({ children }: { children: React.ReactNode }) => children,
+    DEFAULT_CONFIG,
+  };
+});
+
 // ── Imports after mocks ───────────────────────────────────────────────────────
 
 import * as DocumentPicker from 'expo-document-picker';

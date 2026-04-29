@@ -30,6 +30,7 @@ jest.mock('../services/bookService', () => ({
     getBooks: jest.fn().mockResolvedValue([]),
     deleteBook: jest.fn().mockResolvedValue(undefined),
   },
+  resolveCoverUrl: jest.fn((url: string) => url ?? null),
 }));
 
 jest.mock('@react-navigation/stack', () => ({
@@ -39,6 +40,7 @@ jest.mock('@react-navigation/stack', () => ({
 jest.mock('@react-navigation/native', () => ({
   useNavigation: () => ({ navigate: jest.fn(), goBack: jest.fn() }),
   NavigationContainer: ({ children }: { children: React.ReactNode }) => children,
+  useFocusEffect: (cb: () => void) => { cb(); },
 }));
 
 // ── Imports after mocks ───────────────────────────────────────────────────────

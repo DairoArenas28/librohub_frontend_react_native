@@ -32,6 +32,7 @@ jest.mock('../services/bookService', () => ({
     toggleFavorite: jest.fn(),
     getPdfUrl: jest.fn().mockReturnValue('http://localhost/books/1/pdf'),
   },
+  resolveCoverUrl: jest.fn((url: string) => url),
 }));
 
 jest.mock('@react-navigation/stack', () => ({
