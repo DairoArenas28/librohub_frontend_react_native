@@ -21,6 +21,52 @@ exports[`FilterPanel renderiza con categoría y año preseleccionados 1`] = `
   }
   testID="filter-panel"
 >
+  <Text
+    style={
+      {
+        "color": "#555",
+        "fontSize": 13,
+        "fontWeight": "600",
+        "marginBottom": 6,
+      }
+    }
+  >
+    Buscar
+  </Text>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "#fafafa",
+        "borderColor": "#ccc",
+        "borderRadius": 6,
+        "borderWidth": 1,
+        "flexDirection": "row",
+        "marginBottom": 16,
+        "paddingHorizontal": 10,
+      }
+    }
+  >
+    <Text>
+      search-outline
+    </Text>
+    <TextInput
+      autoCorrect={false}
+      onChangeText={[Function]}
+      placeholder="Título o autor..."
+      placeholderTextColor="#aaa"
+      style={
+        {
+          "color": "#333",
+          "flex": 1,
+          "fontSize": 14,
+          "paddingVertical": 10,
+        }
+      }
+      testID="search-input"
+      value=""
+    />
+  </View>
   <View
     style={
       {
@@ -345,6 +391,52 @@ exports[`FilterPanel renderiza correctamente cuando visible es true 1`] = `
   }
   testID="filter-panel"
 >
+  <Text
+    style={
+      {
+        "color": "#555",
+        "fontSize": 13,
+        "fontWeight": "600",
+        "marginBottom": 6,
+      }
+    }
+  >
+    Buscar
+  </Text>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "#fafafa",
+        "borderColor": "#ccc",
+        "borderRadius": 6,
+        "borderWidth": 1,
+        "flexDirection": "row",
+        "marginBottom": 16,
+        "paddingHorizontal": 10,
+      }
+    }
+  >
+    <Text>
+      search-outline
+    </Text>
+    <TextInput
+      autoCorrect={false}
+      onChangeText={[Function]}
+      placeholder="Título o autor..."
+      placeholderTextColor="#aaa"
+      style={
+        {
+          "color": "#333",
+          "flex": 1,
+          "fontSize": 14,
+          "paddingVertical": 10,
+        }
+      }
+      testID="search-input"
+      value=""
+    />
+  </View>
   <View
     style={
       {

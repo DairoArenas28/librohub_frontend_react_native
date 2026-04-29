@@ -138,75 +138,83 @@ exports[`CategorySection renderiza correctamente con props mínimas 1`] = `
         }
       >
         <View
-          accessibilityLabel="Dune"
-          accessibilityRole="button"
-          accessibilityState={
-            {
-              "busy": undefined,
-              "checked": undefined,
-              "disabled": undefined,
-              "expanded": undefined,
-              "selected": undefined,
-            }
-          }
-          accessibilityValue={
-            {
-              "max": undefined,
-              "min": undefined,
-              "now": undefined,
-              "text": undefined,
-            }
-          }
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
           style={
             {
-              "alignItems": "center",
               "marginRight": 12,
-              "opacity": 1,
               "width": 100,
             }
           }
         >
-          <Image
-            resizeMode="cover"
-            source={
+          <View
+            accessibilityLabel="Dune"
+            accessibilityRole="button"
+            accessibilityState={
               {
-                "uri": "https://example.com/dune.jpg",
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
               }
             }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
             style={
               {
-                "backgroundColor": "#e0e0e0",
-                "borderRadius": 6,
-                "height": 150,
-                "width": 100,
+                "alignItems": "center",
+                "opacity": 1,
+                "width": "100%",
               }
             }
-            testID="book-cover"
-          />
-          <Text
-            numberOfLines={2}
-            style={
-              {
-                "color": "#333",
-                "fontSize": 12,
-                "marginTop": 6,
-                "textAlign": "center",
-              }
-            }
-            testID="book-title"
           >
-            Dune
-          </Text>
+            <Image
+              resizeMode="cover"
+              source={
+                {
+                  "uri": "https://example.com/dune.jpg",
+                }
+              }
+              style={
+                {
+                  "aspectRatio": 0.6666666666666666,
+                  "backgroundColor": "#e0e0e0",
+                  "borderRadius": 6,
+                  "width": "100%",
+                }
+              }
+              testID="book-cover"
+            />
+            <Text
+              numberOfLines={2}
+              style={
+                {
+                  "color": "#333",
+                  "fontSize": 11,
+                  "marginTop": 6,
+                  "textAlign": "center",
+                }
+              }
+              testID="book-title"
+            >
+              Dune
+            </Text>
+          </View>
         </View>
       </View>
       <View
@@ -222,75 +230,83 @@ exports[`CategorySection renderiza correctamente con props mínimas 1`] = `
         }
       >
         <View
-          accessibilityLabel="Fundación"
-          accessibilityRole="button"
-          accessibilityState={
-            {
-              "busy": undefined,
-              "checked": undefined,
-              "disabled": undefined,
-              "expanded": undefined,
-              "selected": undefined,
-            }
-          }
-          accessibilityValue={
-            {
-              "max": undefined,
-              "min": undefined,
-              "now": undefined,
-              "text": undefined,
-            }
-          }
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
           style={
             {
-              "alignItems": "center",
               "marginRight": 12,
-              "opacity": 1,
               "width": 100,
             }
           }
         >
-          <Image
-            resizeMode="cover"
-            source={
+          <View
+            accessibilityLabel="Fundación"
+            accessibilityRole="button"
+            accessibilityState={
               {
-                "uri": "https://example.com/foundation.jpg",
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
               }
             }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
             style={
               {
-                "backgroundColor": "#e0e0e0",
-                "borderRadius": 6,
-                "height": 150,
-                "width": 100,
+                "alignItems": "center",
+                "opacity": 1,
+                "width": "100%",
               }
             }
-            testID="book-cover"
-          />
-          <Text
-            numberOfLines={2}
-            style={
-              {
-                "color": "#333",
-                "fontSize": 12,
-                "marginTop": 6,
-                "textAlign": "center",
-              }
-            }
-            testID="book-title"
           >
-            Fundación
-          </Text>
+            <Image
+              resizeMode="cover"
+              source={
+                {
+                  "uri": "https://example.com/foundation.jpg",
+                }
+              }
+              style={
+                {
+                  "aspectRatio": 0.6666666666666666,
+                  "backgroundColor": "#e0e0e0",
+                  "borderRadius": 6,
+                  "width": "100%",
+                }
+              }
+              testID="book-cover"
+            />
+            <Text
+              numberOfLines={2}
+              style={
+                {
+                  "color": "#333",
+                  "fontSize": 11,
+                  "marginTop": 6,
+                  "textAlign": "center",
+                }
+              }
+              testID="book-title"
+            >
+              Fundación
+            </Text>
+          </View>
         </View>
       </View>
     </View>
